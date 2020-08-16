@@ -1,29 +1,94 @@
+import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
-		
+
+		Scanner sc = new Scanner(System.in);
+
 		GstCalculator gstCalc = new GstCalculator();
-		
-		FoodGrains rice = new FoodGrains(1, 100);
-		Furniture sofa = new Furniture(1, 20000);
-		Cosmetics perfume = new Cosmetics(1, 200);
-		Electronics mobile = new Electronics(2, 5000);
-		
-		rice.getFinalPrice(gstCalc);
-		sofa.getFinalPrice(gstCalc);
-		perfume.getFinalPrice(gstCalc);
-		mobile.getFinalPrice(gstCalc);
-		
+		Input ip = new Input();
+
+		while (true) {
+
+			int choice;
+			double unit, price;
+			String item;
+
+			System.out.println("1: FoodGrains 2: Furniture 3:Cosmetics 4: Electronics");
+
+			while (!sc.hasNextInt()) {
+				System.out.println("That's not a number!");
+				sc.next();
+			}
+			choice = sc.nextInt();
+
+			switch (choice) {
+
+			case 1:
+				
+				item = ip.Item();
+
+				unit = ip.Unit();
+
+				price = ip.Price();
+				
+				System.out.println("GST And Final Price of : "+item);
+				
+				FoodGrains foodItem = new FoodGrains(unit, price);
+				foodItem.getFinalPrice(gstCalc);
+				
+				break;
+
+			case 2:
+				
+				item = ip.Item();
+
+				unit = ip.Unit();
+
+				price = ip.Price();
+				
+				System.out.println("GST And Final Price of : "+item);
+				
+				Furniture furnitureItem = new Furniture(unit, price);
+				furnitureItem.getFinalPrice(gstCalc);
+				
+				break;
+			
+			case 3:
+				
+				item = ip.Item();
+
+				unit = ip.Unit();
+
+				price = ip.Price();
+				
+				System.out.println("GST And Final Price of : "+item);
+
+				Cosmetics cosmeticsItem = new Cosmetics(unit, price);
+				cosmeticsItem.getFinalPrice(gstCalc);
+				
+				break;
+				
+			case 4 : 
+				
+				item = ip.Item();
+
+				unit = ip.Unit();
+
+				price = ip.Price();
+				
+				System.out.println("GST And Final Price of : "+item);
+
+				Electronics electronicsItem = new Electronics(unit, price);
+				electronicsItem.getFinalPrice(gstCalc);
+				
+				break;
+
+			default:
+				System.out.println("Please, Enter valid input");
+			}
+		}
+
 	}
 }
-
-/*
-Output : 
-
-	GST Per Unit : 0.0		Final Price : 100.0
-	GST Per Unit : 1000.0	Final Price : 21000.0
-	GST Per Unit : 56.0		Final Price : 256.0
-	GST Per Unit : 900.0	Final Price : 11800.0
-
-*/
